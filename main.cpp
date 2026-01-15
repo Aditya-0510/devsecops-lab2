@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> bubblesort(vector<int>arr){
+vector<int> bubblesort(vector<int>&arr){
     int n=arr.size();
     for(int i = 0; i < n - 1; i++) {
         for(int j = 0; j < n - i - 1; j++) {
@@ -16,7 +16,7 @@ vector<int> bubblesort(vector<int>arr){
    return arr;
  }
  
-void selectionSort(vector<int>v){
+void selectionSort(vector<int>&v){
     for (int i = 0; i < v.size()-1; i++) {
         int minIndex = i;
 
@@ -48,8 +48,7 @@ void insertionSort(vector<int>& arr) {
 }
 
 int main(){
-  vector<int>a={2,1,5,8,2,4};
-     bubblesort(a);
+  
       
     return 0;
 }
