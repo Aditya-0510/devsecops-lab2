@@ -24,39 +24,41 @@ void quickSort(vector<int>& arr, int low, int high) {
 }
 
 
-vector<int> Merge(vector<int> a,vector<int> b){
-    int  i = 0 , j = 0 ;
+void Merge(vector<int> &a, int start, int mid, int end) {
+    int  i = start , j = mid+1 ;
     vector<int> sorted ;
-    while(i<a.size() && j<b.size()){
-        if(a[i]<=b[j]){
+    while(i<=mid && j<=end){
+        if(a[i]<=a[j]){
             sorted.push_back(a[i++]);
         }
-        else sorted.push_back(b[j++]);
+        else sorted.push_back(a[j++]);
     }
-    while(i<a.size() ){
+    while(i<=mid ){
         sorted.push_back(a[i++]);
     }
-    while( j<b.size()){
-        sorted.push_back(b[j++]);
+    while( j<=end){
+        sorted.push_back(a[j++]);
     }
-    return sorted;
+    for (int k = 0; k < sorted.size(); k++) {
+        a[start + k] = sorted[k];
+    }
 }
 
 
-vector<int> MergeSort(vector<int> a,int start,int end){
+void MergeSort(vector<int> &a,int start,int end){
     
-    if(start ==end){
-        vector<int> one = {a[start]};
-        return one;
+    if(start >=end){
+        return;
     };
     int mid = start + (end-start)/2;
-    vector <int > c = MergeSort(a,start,mid);
-    vector <int > d = MergeSort(a,mid+1,end);
-    return Merge(c,d);
+    MergeSort(a,start,mid);
+    MergeSort(a,mid+1,end);
+
+    Merge(a,start,mid,end);
 
 }
 
-void bubblesort(vector<int>&arr){
+void bubbleSort(vector<int>&arr){
       int n=arr.size();
       for(int i = 0; i < n - 1; i++) {
           for(int j = 0; j < n - i - 1; j++) {
@@ -84,6 +86,7 @@ void selectionSort(vector<int>&v){
         v[minIndex] = temp;
   }
 }
+
 void insertionSort(vector<int>& arr) {
     int n = arr.size();
 
@@ -103,7 +106,7 @@ void insertionSort(vector<int>& arr) {
 int main(){
     int n;
     cout << "Enter number of elements: " ;
-    cin << n;
+    cin >> n;
 
     vector<int>a(n);
     cout << "Enter array elements: ";
@@ -127,7 +130,7 @@ int main(){
             break;
 
         case 2:
-            MergeSort(a);
+            MergeSort(a,0,n-1);
             break;
 
         case 3:
@@ -139,7 +142,7 @@ int main(){
             break;
 
         case 5:
-            quickSort(a);
+            quickSort(a,0,n-1);
             break;
 
         default:
@@ -150,7 +153,5 @@ int main(){
         cout << i << " ";
     }
 
-    
-      
     return 0;
 }
