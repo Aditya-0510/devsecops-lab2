@@ -1,17 +1,52 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void bubblesort(vector<int>&arr){
-    int n=arr.size();
-    for(int i = 0; i < n - 1; i++) {
-        for(int j = 0; j < n - i - 1; j++) {
-            if(arr[j] > arr[j + 1]) {
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
+
+
+vector<int> Merge(vector<int> a,vector<int> b){
+    int  i = 0 , j = 0 ;
+    vector<int> sorted ;
+    while(i<a.size() && j<b.size()){
+        if(a[i]<=b[j]){
+            sorted.push_back(a[i++]);
         }
+        else sorted.push_back(b[j++]);
     }
+    while(i<a.size() ){
+        sorted.push_back(a[i++]);
+    }
+    while( j<b.size()){
+        sorted.push_back(b[j++]);
+    }
+    return sorted;
+}
+
+
+vector<int> MergeSort(vector<int> a,int start,int end){
+    
+    if(start ==end){
+        vector<int> one = {a[start]};
+        return one;
+    };
+    int mid = start + (end-start)/2;
+    vector <int > c = MergeSort(a,start,mid);
+    vector <int > d = MergeSort(a,mid+1,end);
+    return Merge(c,d);
+
+}
+
+void bubblesort(vector<int>&arr){
+  >>>>>>> main
+      int n=arr.size();
+      for(int i = 0; i < n - 1; i++) {
+          for(int j = 0; j < n - i - 1; j++) {
+              if(arr[j] > arr[j + 1]) {
+                  int temp = arr[j];
+                  arr[j] = arr[j + 1];
+                  arr[j + 1] = temp;
+              }
+          }
+      }
  }
  
 void selectionSort(vector<int>&v){
@@ -95,5 +130,7 @@ int main(){
         cout << i << " ";
     }
 
+    
+      
     return 0;
 }
