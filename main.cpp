@@ -2,6 +2,7 @@
 using namespace std;
 
 
+
 vector<int> Merge(vector<int> a,vector<int> b){
     int  i = 0 , j = 0 ;
     vector<int> sorted ;
@@ -34,19 +35,18 @@ vector<int> MergeSort(vector<int> a,int start,int end){
 
 }
 
-vector<int> bubblesort(vector<int>&arr){
-    int n=arr.size();
-    for(int i = 0; i < n - 1; i++) {
-        for(int j = 0; j < n - i - 1; j++) {
-            if(arr[j] > arr[j + 1]) {
-                // swap
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
-    }
-   return arr;
+void bubblesort(vector<int>&arr){
+  >>>>>>> main
+      int n=arr.size();
+      for(int i = 0; i < n - 1; i++) {
+          for(int j = 0; j < n - i - 1; j++) {
+              if(arr[j] > arr[j + 1]) {
+                  int temp = arr[j];
+                  arr[j] = arr[j + 1];
+                  arr[j + 1] = temp;
+              }
+          }
+      }
  }
  
 void selectionSort(vector<int>&v){
@@ -81,6 +81,55 @@ void insertionSort(vector<int>& arr) {
 }
 
 int main(){
+    int n;
+    cout << "Enter number of elements: " ;
+    cin << n;
+
+    vector<int>a(n);
+    cout << "Enter array elements: ";
+    for(int i=0;i<n;i++){
+        cin >> a[i];
+    }
+    
+    cout << "Enter your choice of sort: "<< endl;
+    cout << "1.Bubble Sort" << endl;
+    cout << "2.Merge Sort"<< endl;
+    cout << "3.Insertion Sort"<< endl;
+    cout << "4.Selection Sort"<< endl;
+    cout << "5.Quick Sort"<< endl;
+
+    int ch;
+    cin >> ch;
+    
+    switch (ch) {
+        case 1:
+            bubbleSort(a);
+            break;
+
+        case 2:
+            MergeSort(a);
+            break;
+
+        case 3:
+            insertionSort(a);
+            break;
+
+        case 4:
+            selectionSort(a);
+            break;
+
+        case 5:
+            quickSort(a);
+            break;
+
+        default:
+            cout << "Enter a valid response";
+    }
+
+    for(auto i: a){
+        cout << i << " ";
+    }
+
     
       
     return 0;
